@@ -37,7 +37,7 @@ func main() {
 
 func download(url string) *http.Response {
 	log.Print("Downloading vscode...")
-	res, err := http.Get(DebX64Url)
+	res, err := http.Get(url)
 	if err != nil {
 		panic(err)
 	}
@@ -84,5 +84,8 @@ func newCmd(executable string, args []string) *exec.Cmd {
 
 func cleanup() {
 	log.Print("Removing installer...")
-	os.Remove("vscode_installer.deb")
+	err := os.Remove("vscode_installer.deb")
+	if err != nil {
+		log.Print("Something went wrong attempting to remove the install file")
+	}
 }
