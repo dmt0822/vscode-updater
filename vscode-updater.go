@@ -26,12 +26,12 @@ func main() {
 
 	cmd := newCmd("sudo", []string{"dpkg", "-i", "vscode_installer.deb"})
 
+	defer cleanup()
+
 	if err := cmd.Run(); err != nil {
-		cleanup()
 		panic(err)
 	}
 
-	cleanup()
 	log.Print("Update complete")
 }
 
