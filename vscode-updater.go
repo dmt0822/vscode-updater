@@ -10,11 +10,11 @@ import (
 )
 
 const (
-	DebX64Url = "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
+	DEB_X64_URL = "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
 )
 
 func main() {
-	res := download(DebX64Url)
+	res := download(DEB_X64_URL)
 
 	defer res.Body.Close()
 	body := res.Body
@@ -24,7 +24,7 @@ func main() {
 
 	copyToFile(file, body)
 
-	cmd := newCmd("sudo", []string{"dpkg", "-i", "vscode_installer.deb"})
+	cmd := newCmd("dpkg", []string{"-i", "vscode_installer.deb"})
 
 	defer cleanup()
 
